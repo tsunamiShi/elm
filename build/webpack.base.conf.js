@@ -77,6 +77,15 @@ module.exports = {
       }
     ]
   },
+  devServer: {
+    port: process.env.port || config.dev.port,
+    proxy: {
+      '/v1': {
+        target: 'https://mainsite-restapi.ele.me',
+        changeOrigin: true
+      },
+    }
+  },
   node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue
     // source contains it (although only uses it if it's native).
